@@ -15,7 +15,7 @@ devtools::install_github('JuanXie19/LRT')
 ```
 
 ## Vignettes
-[LRT vignette](JuanXie19.github.io/blob/main/LRT_vignette.html)
+[LRT vignette](https://JuanXie19.github.io/blob/main/vignette.html)
 
 ## Requirements
 
