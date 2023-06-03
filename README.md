@@ -1,9 +1,9 @@
 # LRT
-The `LRT` package is an R package for clonotype lineage inference and clustering analysis. 
+The `LRT` package is an R package for investigating clonal differentiation heterogeneity. 
 
 Cell differentiation is a long-standing focus in developmental biology. It is widely accepted that there are no clear distinctions between cellular states, but instead a smooth trasition. Thus cells can be viewed as points along a continuum/lineage. Inference of lineage structure help understanding how cells change states. Many existing tools perform lienage inference based on single-cell transcriptomics data, owing to the fact that cells in different states express different sets of genes, and thus transriptional changes may provide clues for the dynamic biological process that cells go through. The general idea is to learn the different states that cells might go through according to the changes of gene expression, and then place cells onto the infered path. Although single-cell transcriptomics data provide detailed phenotypic information, the predicted lineage trajectories do not necessarilly reflect the true clonal relationships[1], as cells sharing same differentiation state may come from different founder cells. 
 
-scTCR-seq data compliments the scRNA-seq data in the sense that it provides the clonotype information for each cell, and it is generally assumed that cells sharing the same clonotype share the same progenitor. By integrating scTCR-seq data with scRNA-seq data, we could have a detailed insight of transcriptional changes that occur as clonal related cells differentiate. The `LRT` package utilizes the complementary nature of these two data type  and infers cell lineage by integrative analysis of scTCR-seq data and scRNA-seq data.
+scTCR-seq data compliments the scRNA-seq data in the sense that it provides the clonotype information for each cell, and it is generally assumed that cells sharing the same clonotype share the same progenitor. By integrating scTCR-seq data with scRNA-seq data, we could have a detailed insight of transcriptional changes that occur as clonal related cells differentiate. The `LRT` package utilizes the complementary nature of these two data type  and investigate clonal differentiation heterogeneity by integrative analysis of scTCR-seq data and scRNA-seq data.
 
 
 ## Installation
@@ -44,19 +44,10 @@ shinyClone(Combined)
 
 # infer trajectory
 ## it is advised to specify the starting cluster, in this example data we choose 'Tcmp'
-Trajectory <- getClonotypeLineages(Combined,start.clus = 'Tcmp', end.clus = NULL, dist.method = 'simple', use.median = TRUE)
+Trajectory <- getOverallTrajectory(Combined,start.clus = 'Tcmp')
 
-# access one of the inferred lienages
-lrtLineages(Trajectory)[[1]]
-
-# check the parameters used for lineage inference
-lrtParams(Trajectory) 
-
-# prepare input for shinyClust
-G.df <- getShinyInput(Combined)
-
-#  lineage clustering analysis
-shinyClust(Trajectory,G.df)
+#  clonotype clustering and clonotype cluster characterization
+shinyClust(Trajectory)
 
 ```
 
