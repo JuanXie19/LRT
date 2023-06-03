@@ -1,0 +1,22 @@
+Package: LRT
+Type: Package
+Title: LRT (Lineage estimation by integrative analysis of single-cell RNA-seq and TCR-seq data)
+Version: 0.1.0
+Authors@R: 
+	c(person(given = 'Juan',
+			family = 'Xie',
+			role = c('aut','cre'),
+			email = 'xie.1097@buckeyemail.osu.edu'),
+	   person(given = 'Dongjun',
+			 family = 'Chung',
+			 role = c('aut')))
+Description: This package provides function for investigating  clonal differentiation heterogeneity by integrative analysis of scRNA-seq and scTCR-seq data. 
+    In addition, it also includes shinyClone and shinyClust, two shiny apps for clonotype exploratory analysis and clonotype clustering and clonotype cluster characterization.
+License: GPL (>=2)
+Depends:
+    R (>= 4.0.0)
+Imports: Seurat,SingleCellExperiment,TrajectoryUtils,slingshot,cluster,ggpubr,tibble,parallel,
+		dplyr,tidyr,shiny,shinyBS,shinysky,progress,DT,ggplot2,vegan,reshape2,DirichletMultinomial
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3.9000
