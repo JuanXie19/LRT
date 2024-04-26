@@ -129,10 +129,10 @@ shinyClust <- function(TrajectoryDataSet = NULL){
 				column(7,
 					radioButtons(inputId = "geneInd",
                                   label = "Show",
-                                               choices = c("V gene","J gene"),
-                                               selected = 'V gene',inline=T),
+                                               choices = c("V","J"),
+                                               selected = 'V',inline=T),
 					plotOutput('geneUsage'),
-					helpText('The plot shows the gene usage for each clonotype cluster')
+					helpText('The plot shows the V/J gene usage for each clonotype cluster')
 				))
 		)	
 		)))
@@ -617,8 +617,8 @@ shinyClust <- function(TrajectoryDataSet = NULL){
 
 
 ########### gene usage
-	#gene = reactive(strsplit(input$geneInd,' '))[[1]][1]
-	gene = 'V'
+	gene = reactive(input$geneInd)
+	#gene = 'V'
    chain = "TRB" 
    plot = "heatmap" 
    plot = 'bar'
@@ -656,7 +656,7 @@ shinyClust <- function(TrajectoryDataSet = NULL){
 			colnames(df)[ncol(df)] <- y.axis
 			}
 		}
-		df <- select.gene(df, chain, gene)
+		df <- select.gene(df, chain, gene())
 		df <- subset(df, !is.na(df[,ncol(df)])) #remove NA values
 		df <- subset(df, df[,ncol(df)] != "NA") #remove values that are character "NA"
 		df <- subset(df, df[,ncol(df)] != "") #remove rows with non genes
